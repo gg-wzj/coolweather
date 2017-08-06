@@ -6,6 +6,8 @@ import android.util.Log;
 import com.example.coolweather.db.City;
 import com.example.coolweather.db.County;
 import com.example.coolweather.db.Province;
+import com.example.coolweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,11 +44,11 @@ public class Utility {
         return false;
     }
 
-    public static  boolean handleCityRespond(String response ,int provinceId){
-        if(!TextUtils.isEmpty(response)){
+    public static boolean handleCityRespond(String response, int provinceId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                for(int i =0 ;i< jsonArray.length();i++){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     City city = new City();
                     city.setCityCode(jsonObject.optInt("id"));
@@ -63,11 +65,11 @@ public class Utility {
         return false;
     }
 
-    public static  boolean handleCountyRespond(String response ,int cityId){
-        if(!TextUtils.isEmpty(response)){
+    public static boolean handleCountyRespond(String response, int cityId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                for(int i =0 ;i< jsonArray.length();i++){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     County county = new County();
                     county.setCityId(cityId);
@@ -82,6 +84,20 @@ public class Utility {
         }
 
         return false;
+    }
+
+    public static Weather handleWeatherRespone(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.optJSONArray("HeWeather");
+            String weatherContent =jsonArray.optJSONObject(0).toString();
+            Log.i("wzj",new Gson().fromJson(weatherContent, Weather.class).toString());
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return  null;
     }
 }
 

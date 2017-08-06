@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+<!--在添加在drawerlayout后，列表的颜色编程了透明，原来是单纯的textview的话就是只有字有颜色的，
+    不指定背景就是透明的，一般情况下屏幕的背景就是白色，而在指定了其他的，如叠加在imageview上时
+    就可以看出的透明的，所以在这里要加上背景颜色白色-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -21,7 +25,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
-                android:background="@drawable/back"/>
+                android:background="@drawable/ic_arrow_back_white"/>
         </RelativeLayout>
     <ListView
         android:id="@+id/list_view"
