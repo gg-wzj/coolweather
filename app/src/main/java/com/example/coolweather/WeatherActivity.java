@@ -161,6 +161,7 @@ public class WeatherActivity extends AppCompatActivity {
         if (weather.getAqi() == null) {
             layout_aqi.setVisibility(View.GONE);
         } else {
+            layout_aqi.setVisibility(View.VISIBLE);
             tv_aqi.setText(weather.getAqi().getCity().getAqi());
             tv_pm.setText(weather.getAqi().getCity().getPm25());
         }
