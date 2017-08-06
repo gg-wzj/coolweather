@@ -1,5 +1,6 @@
 package com.example.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -129,6 +130,7 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather", responseText);
                             editor.apply();
                             showInfo(weather);
+
                         }
                     }
                 });
@@ -220,5 +222,8 @@ public class WeatherActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Intent intent = new Intent(WeatherActivity.this,AutoUpdateService.class);
+        startService(intent);
     }
 }
